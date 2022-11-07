@@ -9,6 +9,9 @@ class TelegramOrganisation(models.Model):
     def __str__(self):
         return self.title
 
+    def __repr__(self):
+        return self.title
+
 
 class Balance(models.Model):
     amount = models.IntegerField(verbose_name='Баланс:')
