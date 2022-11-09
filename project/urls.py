@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
 
-from manage_bots.views import BalanceAPIView, MemberAPIView
+from manage_bots.views import BalanceAPIView, MemberAPIView, BotAPIView
 
 
 router = routers.DefaultRouter()
 router.register(r'balancelist', BalanceAPIView)
 router.register(r'members', MemberAPIView)
+router.register(r'bots', BotAPIView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
