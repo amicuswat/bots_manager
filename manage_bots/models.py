@@ -17,3 +17,16 @@ class TelegramUser(models.Model):
     telegram_id = models.IntegerField(verbose_name='ID участника в Телеграм')
     is_bot_user = models.BooleanField(verbose_name='Видит баланс', default=True)
     is_notification_list = models.BooleanField(verbose_name='Получает уведомление', default=False)
+
+
+
+class Bot(models.Model):
+    title = models.CharField(verbose_name='Название бота', max_length=100, unique=True)
+    type = models.CharField(verbose_name='Тип бота', max_length=50)
+    first_limit = models.IntegerField(verbose_name='Первый предел', default=5000)
+    first_limit_delay = models.IntegerField(verbose_name='Периодичность уведомления в часах', default=12)
+    critical_limit = models.IntegerField(verbose_name='Первый предел', default=2000)
+    critical_limit_delay = models.IntegerField(verbose_name='Периодичность уведомления в часах', default=1)
+
+
+
