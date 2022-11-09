@@ -15,5 +15,5 @@ class TelegramUser(models.Model):
     name = models.CharField(verbose_name='ФИО', max_length=200, blank=True)
     tg_name = models.CharField(verbose_name='Ник в ТГ', max_length=50, blank=True)
     telegram_id = models.IntegerField(verbose_name='ID участника в Телеграм')
-    is_bot_user = models.BooleanField(default=True)
-    is_notification_list = models.BooleanField(default=False)
+    is_bot_user = models.BooleanField(verbose_name='Видит баланс', default=True)
+    is_notification_list = models.BooleanField(verbose_name='Получает уведомление', default=False)
