@@ -2,15 +2,6 @@ from django.db import models
 from django.utils import timezone
 
 # Create your models here.
-class TelegramOrganisation(models.Model):
-    title = models.CharField(verbose_name='Название организации', max_length=200)
-    chat_id = models.IntegerField(verbose_name='ID группы в Телеграм')
-
-    def __str__(self):
-        return self.title
-
-    def __repr__(self):
-        return self.title
 
 
 class Balance(models.Model):
@@ -18,18 +9,11 @@ class Balance(models.Model):
     moment = models.DateTimeField(verbose_name='Когда:',
                                   default=timezone.now,
                                   db_index=True)
-    organisation = models.ForeignKey(
-        TelegramOrganisation,
-        verbose_name='Компания-клиент',
-        on_delete=models.CASCADE
-    )
 
 
 class TelegramUser(models.Model):
+    name = models.CharField(verbose_name='ФИО', max_length=200, blank=True)
+    tg_name = models.CharField(verbose_name='Ник в ТГ', max_length=50, blank=True)
     telegram_id = models.IntegerField(verbose_name='ID участника в Телеграм')
-    organisation = models.ForeignKey(
-        TelegramOrganisation,
-        verbose_name='Компания пользователя',
-        on_delete=models.CASCADE,
-        related_name='members'
-    )
+    is_bot_user = models.BooleanField(default=True)
+    is_notification_list = models.BooleanField(default=False)

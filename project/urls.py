@@ -17,12 +17,11 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
 
-from manage_bots.views import BalanceAPIView, OrganisationAPIView, MemberAPIView
+from manage_bots.views import BalanceAPIView, MemberAPIView
 
 
 router = routers.DefaultRouter()
 router.register(r'balancelist', BalanceAPIView)
-router.register(r'organisations', OrganisationAPIView)
 router.register(r'members', MemberAPIView)
 
 urlpatterns = [
