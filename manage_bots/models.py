@@ -19,6 +19,14 @@ class TelegramUser(models.Model):
     is_notification_list = models.BooleanField(verbose_name='Получает уведомление', default=False)
 
 
+class TelegramGroup(models.Model):
+    name = models.CharField(verbose_name='Название группы', max_length=200, blank=True)
+    telegram_id = models.IntegerField(verbose_name='ID группы в Телеграм')
+    is_notification_list = models.BooleanField(verbose_name='Получает уведомление', default=False)
+
+    def __str__(self):
+        return self.name
+
 
 class Bot(models.Model):
     title = models.CharField(verbose_name='Название бота', max_length=100, unique=True)
