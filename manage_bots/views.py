@@ -1,16 +1,11 @@
 from rest_framework import viewsets
-from .models import Balance, TelegramUser, Bot, TelegramGroup
-from .serializers import BalanceSerializer, MemberSerializer, BotSerializer, GroupSerializer
+from .models import Balance, Bot, TelegramGroup
+from .serializers import BalanceSerializer, BotSerializer, GroupSerializer
 
 # Create your views here.
 class BalanceAPIView(viewsets.ModelViewSet):
     queryset = Balance.objects.all()
     serializer_class = BalanceSerializer
-
-
-class MemberAPIView(viewsets.ModelViewSet):
-    queryset = TelegramUser.objects.all()
-    serializer_class = MemberSerializer
 
 
 class GroupAPIView(viewsets.ModelViewSet):

@@ -10,13 +10,12 @@ class Balance(models.Model):
                                   default=timezone.now,
                                   db_index=True)
 
+    def __str__(self):
+        return f'{self.amount} руб. - {self.moment}'
 
-class TelegramUser(models.Model):
-    name = models.CharField(verbose_name='ФИО', max_length=200, blank=True)
-    tg_name = models.CharField(verbose_name='Ник в ТГ', max_length=50, blank=True)
-    telegram_id = models.IntegerField(verbose_name='ID участника в Телеграм')
-    is_bot_user = models.BooleanField(verbose_name='Видит баланс', default=True)
-    is_notification_list = models.BooleanField(verbose_name='Получает уведомление', default=False)
+    class Meta:
+        verbose_name = u'баланс'
+        verbose_name_plural = u'балансы'
 
 
 class TelegramGroup(models.Model):
@@ -27,14 +26,25 @@ class TelegramGroup(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = u'ТГ группа'
+        verbose_name_plural = u'ТГ группы'
+
 
 class Bot(models.Model):
     title = models.CharField(verbose_name='Название бота', max_length=100, unique=True)
-    type = models.CharField(verbose_name='Тип бота', max_length=50)
     first_limit = models.IntegerField(verbose_name='Первый предел', default=5000)
     first_limit_delay = models.IntegerField(verbose_name='Периодичность уведомления в часах', default=12)
     critical_limit = models.IntegerField(verbose_name='Первый предел', default=2000)
     critical_limit_delay = models.IntegerField(verbose_name='Периодичность уведомления в часах', default=1)
+    api_requests_interval = models.IntegerField(verbose_name='Частота обновления по АПИ в секундах', default=60)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = u'бот'
+        verbose_name_plural = u'боты'
 
 
 

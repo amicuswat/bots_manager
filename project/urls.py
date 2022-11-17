@@ -17,12 +17,11 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
 
-from manage_bots.views import BalanceAPIView, MemberAPIView, BotAPIView, GroupAPIView
+from manage_bots.views import BalanceAPIView, BotAPIView, GroupAPIView
 
 
 router = routers.DefaultRouter()
 router.register(r'balancelist', BalanceAPIView)
-router.register(r'members', MemberAPIView)
 router.register(r'bots', BotAPIView)
 router.register(r'groups', GroupAPIView)
 
