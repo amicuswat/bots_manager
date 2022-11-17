@@ -32,12 +32,38 @@ class TelegramGroup(models.Model):
 
 
 class Bot(models.Model):
-    title = models.CharField(verbose_name='Название бота', max_length=100, unique=True)
-    first_limit = models.IntegerField(verbose_name='Первый предел', default=5000)
-    first_limit_delay = models.IntegerField(verbose_name='Периодичность уведомления в часах', default=12)
-    critical_limit = models.IntegerField(verbose_name='Первый предел', default=2000)
-    critical_limit_delay = models.IntegerField(verbose_name='Периодичность уведомления в часах', default=1)
-    api_requests_interval = models.IntegerField(verbose_name='Частота обновления по АПИ в секундах', default=60)
+    title = models.CharField(verbose_name='Название бота:',
+                             max_length=100, unique=True)
+    first_limit = models.IntegerField(
+        verbose_name='Первый порог срабатывания автоматики:',
+        default=5000,
+        help_text='Если баланс в РУБЛЯХ опустится ниже этого значения '
+                  'бот будет отправлять напоминания о необходимости оплаты'
+    )
+    first_limit_delay = models.IntegerField(
+        verbose_name='Повторное уведомление при первом пороге',
+        default=12,
+        help_text='Интервал в ЧАСАХ, через который бот будет отправлять '
+                  'повторное уведомление при первом пороге'
+    )
+    critical_limit = models.IntegerField(
+        verbose_name='Второй порог срабатывания автоматики',
+        default=2000,
+        help_text='Если баланс в РУБЛЯХ опустится ниже этого значения бот '
+                  'будет отправлять напоминания о необходимости оплаты чаще'
+    )
+    critical_limit_delay = models.IntegerField(
+        verbose_name='Повторное уведомление при втором пороге',
+        default=1,
+        help_text='Интервал в ЧАСАХ, через который бот будет отправлять '
+                  'повторное уведомление при втором пороге'
+    )
+    api_requests_interval = models.IntegerField(
+        verbose_name='Частота запроса баланса по АПИ',
+        default=60,
+        help_text='Инетрвал в СЕКУНДАХ, через который бот '
+                  'запрашивает обновление данных о балансе по АПИ'
+    )
 
     def __str__(self):
         return self.title
