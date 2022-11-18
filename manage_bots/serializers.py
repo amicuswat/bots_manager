@@ -18,4 +18,4 @@ class GroupSerializer(serializers.ModelSerializer):
 class BotSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bot
-        fields = ('id', 'first_limit', 'first_limit_delay', 'critical_limit', 'critical_limit_delay')
+        fields = ('id', 'first_limit', 'first_limit_delay', 'critical_limit', 'critical_limit_delay', 'api_requests_interval')
